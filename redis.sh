@@ -11,5 +11,6 @@ echo -e "\e[36m>>>>>> changing port<<<<<<<<\e[0m"
 sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf
 
 echo -e "\e[36m>>>>>> restart redisv <<<<<<<<\e[0m"
-systemctl enable redis
+
 systemctl restart redis
+systemctl enable redis
