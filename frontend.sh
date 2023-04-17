@@ -2,9 +2,10 @@ echo -e "\e[36m>>>>>>>> installing nginx <<<<<<<<<<< \e[0m"
 yum install nginx -y
 
 echo -e "\e[36m>>>>>>>> restarting nginxx <<<<<<<<<<< \e[0m"
-systemctl status nginx
+
 systemctl enable nginx
 systemctl start nginx
+systemctl status nginx
 
 echo -e "\e[36m>>>>>>>> configuring file <<<<<<<<<<< \e[0m"
 cp roboshop.conf /etc/nginx/default.d/roboshop.conf
