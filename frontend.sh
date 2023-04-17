@@ -2,6 +2,7 @@ echo -e "\e[36m>>>>>>>> installing nginx <<<<<<<<<<< \e[0m"
 yum install nginx -y
 
 echo -e "\e[36m>>>>>>>> restarting nginxx <<<<<<<<<<< \e[0m"
+systemctl status nginx
 systemctl enable nginx
 systemctl start nginx
 
