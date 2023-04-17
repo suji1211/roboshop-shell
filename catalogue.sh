@@ -24,7 +24,7 @@ echo -e "\e[36m>>>>>>>>> installing dependencies <<<<<<\e[0m"
 npm install
 
 echo -e "\e[36m>>>>>>>>> coping catalogue file <<<<<<\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[36m>>>>>>>>> restarting nodejs <<<<<<\e[0m"
 systemctl daemon-reload
