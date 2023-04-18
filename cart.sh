@@ -8,6 +8,7 @@ echo -e "\e[36m>>>>>>adding application user<<<<<<<<\e[0m"
 useradd roboshop
 
 echo -e "\e[36m>>>>>>creating app directory<<<<<<<<\e[0m"
+rm -rf /app
 mkdir /app
 
 echo -e "\e[36m>>>>>>coping mongo repo<<<<<<<<\e[0m"
@@ -23,7 +24,7 @@ echo -e "\e[36m>>>>>>npm file installation<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[36m>>>>>>copying cart service<<<<<<<<\e[0m"
-cp cart.service /etc/systemd/system/cart.service
+cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[36m>>>>>>service reload<<<<<<<<\e[0m"
 systemctl daemon-reload
