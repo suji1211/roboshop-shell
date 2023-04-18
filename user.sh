@@ -8,6 +8,7 @@ echo -e "\e[36m>>>>>> adding service user<<<<<<<<\e[0m"
 useradd roboshop
 
 echo -e "\e[36m>>>>>> creating app directory<<<<<<<<\e[0m"
+rm -rf app
 mkdir /app
 
 echo -e "\e[36m>>>>>> downloading repo<<<<<<<<\e[0m"
