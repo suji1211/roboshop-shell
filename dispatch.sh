@@ -1,16 +1,34 @@
+echo -e "\e[36m>>>>>>installing golang<<<<<<<<\e[0m"
 yum install golang -y
+
+echo -e "\e[36m>>>> adding application user<<<<<<<\e[0m"
 useradd roboshop
+
+echo -e "\e[36m>>>>>>Creating ap[p directory<<<<<<<<\e[0m"
 mkdir /app
+
+echo -e "\e[36m>>>>>>downloading dispatch file<<<<<<<<\e[0m"
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
+
+echo -e "\e[36m>>>>>> changing to app directory <<<<<<<<\e[0m"
 cd /app
+
+echo -e "\e[36m>>>>>>unzipping the content<<<<<<<<\e[0m"
 unzip /tmp/dispatch.zip
-cd /app
+
+echo -e "\e[36m>>>>>>dispatching the commands<<<<<<<<\e[0m"
 go mod init dispatch
 go get
 go build
 
+echo -e "\e[36m>>>>>>coping the dispatch service<<<<<<<<\e[0m"
+
 cp dispatch.service /etc/systemd/system/dispatch.service
 
+echo -e "\e[36m>>>>>>loading the service<<<<<<<<\e[0m"
+
 systemctl daemon-reload
+
+echo -e "\e[36m>>>>>> starting and enabling service<<<<<<<<\e[0m"
 systemctl enable dispatch
 systemctl start dispatch
