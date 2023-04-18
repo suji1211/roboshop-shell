@@ -31,7 +31,7 @@ systemctl daemon-reload
 
 echo -e "\e[36m>>>>>> enabling user service<<<<<<<<\e[0m"
 systemctl enable user
-systemctl start user
+systemctl restart user
 
 echo -e "\e[36m>>>>>>coping mongo repo<<<<<<<<\e[0m"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
@@ -40,4 +40,4 @@ echo -e "\e[36m>>>>>> installing mongo<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
 
 echo -e "\e[36m>>>>>> loading schema<<<<<<<<\e[0m"
-mongo --host mongodb-dev.sujianilsrisriyaan.online /app/schema/user.js
+mongo --host mongodb-dev.sujianilsrisriyaan.online </app/schema/user.js
