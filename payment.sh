@@ -20,7 +20,7 @@ echo -e "\e[36m>>>>>>Installing pip 3.6 requirements<<<<<<<<\e[0m"
 pip3.6 install -r requirements.txt
 
 echo -e "\e[36m>>>>>>copying payment.service<<<<<<<<\e[0m"
-cp payment.service /etc/systemd/system/payment.service
+cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service
 
 
 echo -e "\e[36m>>>>>>reloading the service<<<<<<<<\e[0m"

@@ -34,7 +34,7 @@ echo -e "\e[36m>>>>>>calling the service<<<<<<<<\e[0m"
 mysql -h mysql-dev.sujianilsrisriyaan.online -uroot -pRoboShop@1 /app/schema/shipping.sql
 
 echo -e "\e[36m>>>>>>restarting the service<<<<<<<<\e[0m"
-echo -e "\e[36m>>>>>>Creloading the service<<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>reloading the service<<<<<<<<\e[0m"
 systemctl daemon-reload
 
 echo -e "\e[36m>>>>>>starting and enabling service<<<<<<<<\e[0m"
