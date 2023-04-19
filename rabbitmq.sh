@@ -17,6 +17,7 @@ echo -e "\e[36m>>>>>>restarting rabbitmq server<<<<<<<<\e[0m"
 systemctl start rabbitmq-server
 
 echo -e "\e[36m>>>>>> adding user<<<<<<<<\e[0m"
+
 rabbitmqctl add_user roboshop roboshop123
 
 echo -e "\e[36m>>>>>>Setting permissions to user<<<<<<<<\e[0m"

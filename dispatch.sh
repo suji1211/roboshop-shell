@@ -5,6 +5,7 @@ echo -e "\e[36m>>>> adding application user<<<<<<<\e[0m"
 useradd roboshop
 
 echo -e "\e[36m>>>>>>Creating ap[p directory<<<<<<<<\e[0m"
+rm -rf /app
 mkdir /app
 
 echo -e "\e[36m>>>>>>downloading dispatch file<<<<<<<<\e[0m"
@@ -23,7 +24,7 @@ go build
 
 echo -e "\e[36m>>>>>>coping the dispatch service<<<<<<<<\e[0m"
 
-cp dispatch.service /etc/systemd/system/dispatch.service
+cp /home/centos/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service
 
 echo -e "\e[36m>>>>>>loading the service<<<<<<<<\e[0m"
 
@@ -31,4 +32,4 @@ systemctl daemon-reload
 
 echo -e "\e[36m>>>>>> starting and enabling service<<<<<<<<\e[0m"
 systemctl enable dispatch
-systemctl start dispatch
+systemctl restart dispatch
