@@ -5,6 +5,7 @@ echo -e "\e[36m>>>>>>adding appication user<<<<<<<<\e[0m"
 useradd roboshop
 
 echo -e "\e[36m>>>>>>creating app DIRECTORY<<<<<<<<\e[0m"
+rm -rf /app
 mkdir /app
 
 echo -e "\e[36m>>>>>>downloading payment service<<<<<<<<\e[0m"
