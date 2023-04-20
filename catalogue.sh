@@ -1,4 +1,6 @@
-source common.sh
+script=$(realpath "0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 echo -e "\e[36m>>>>>>>>> downloading nodejs file <<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -25,7 +27,7 @@ echo -e "\e[36m>>>>>>>>> installing dependencies <<<<<<\e[0m"
 npm install
 
 echo -e "\e[36m>>>>>>>>> coping catalogue file <<<<<<\e[0m"
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+cp ${script_path}/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[36m>>>>>>>>> restarting nodejs <<<<<<\e[0m"
 systemctl daemon-reload
@@ -33,7 +35,7 @@ systemctl enable catalogue
 systemctl start catalogue
 
 echo -e "\e[36m>>>>>>>>> mongo config file <<<<<<\e[0m"
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[36m>>>>>>>>> installing file <<<<<<\e[0m"
 yum install mongodb-org-shell -y

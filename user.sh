@@ -1,3 +1,6 @@
+script=$(realpath "0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 echo -e "\e[36m>>>>>> downloading nodejs<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -17,6 +20,7 @@ curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
 echo -e "\e[36m>>>>>> changing to app directory<<<<<<<<\e[0m"
 cd /app
 
+
 echo -e "\e[36m>>>>>> unzipping the content<<<<<<<<\e[0m"
 unzip /tmp/user.zip
 
@@ -24,7 +28,7 @@ echo -e "\e[36m>>>>>> installing dependencies<<<<<<<<\e[0m"
 npm install
 
 echo -e "\e[36m>>>>>> coping user service <<<<<<<<\e[0m"
-cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
+cp {script_path}/user.service /etc/systemd/system/user.service
 
 echo -e "\e[36m>>>>>> service reload<<<<<<<<\e[0m"
 systemctl daemon-reload
@@ -34,7 +38,7 @@ systemctl enable user
 systemctl restart user
 
 echo -e "\e[36m>>>>>>coping mongo repo<<<<<<<<\e[0m"
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp {script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
 echo -e "\e[36m>>>>>> installing mongo<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
