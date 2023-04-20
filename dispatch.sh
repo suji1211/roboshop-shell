@@ -1,38 +1,41 @@
 script=$(realpath "0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
-echo -e "\e[36m>>>>>>installing golang<<<<<<<<\e[0m"
+
+func_print_head() {
+  echo -e "\e[36m>>>>>>>>> $1 <<<<<<<<<<\e[0m"
+}
+func_print_head "installing golang"
 yum install golang -y
 
-echo -e "\e[36m>>>> adding application user<<<<<<<\e[0m"
+func_print_head "Adding application user"
 useradd ${app_user}
 
-echo -e "\e[36m>>>>>>Creating ap[p directory<<<<<<<<\e[0m"
+func_print_head "Creating app directory"
 rm -rf /app
 mkdir /app
 
-echo -e "\e[36m>>>>>>downloading dispatch file<<<<<<<<\e[0m"
+func_print_head "downloading dispatch file"
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
 
-echo -e "\e[36m>>>>>> changing to app directory <<<<<<<<\e[0m"
+func_print_head "changing to app directory"
 cd /app
 
-echo -e "\e[36m>>>>>>unzipping the content<<<<<<<<\e[0m"
+func_print_head "unzipping the content"
 unzip /tmp/dispatch.zip
 
-echo -e "\e[36m>>>>>>dispatching the commands<<<<<<<<\e[0m"
+func_print_head "dispatching commands"
 go mod init dispatch
 go get
 go build
 
-echo -e "\e[36m>>>>>>coping the dispatch service<<<<<<<<\e[0m"
+func_print_head "coping the dispatch service"
 
 cp ${script_path}/dispatch.service /etc/systemd/system/dispatch.service
 
-echo -e "\e[36m>>>>>>loading the service<<<<<<<<\e[0m"
-
+func_print_head "loading the service"
 systemctl daemon-reload
 
-echo -e "\e[36m>>>>>> starting and enabling service<<<<<<<<\e[0m"
+func_print_head  "starting and enabling service"
 systemctl enable dispatch
 systemctl restart dispatch

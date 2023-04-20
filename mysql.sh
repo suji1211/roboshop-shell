@@ -1,20 +1,25 @@
 script=$(realpath "0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
-echo -e "\e[36m>>>>>>disabling the mysql<<<<<<<<\e[0m"
+
+func_print_head() {
+  echo -e "\e[36m>>>>>>>>> $1 <<<<<<<<<<\e[0m"
+}
+
+func_print_head "disabling the mysql""
 dnf module disable mysql -y
 
-echo -e "\e[36m>>>>>>coping mysql repo file<<<<<<<<\e[0m"
+func_print_head "copying mysql repo file"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 
-echo -e "\e[36m>>>>>>Installing mysql server<<<<<<<<\e[0m"
+func_print_head "Installing mysql server"
 yum install mysql-community-server -y
 
-echo -e "\e[36m>>>>>> enabling my sql<<<<<<<\e[0m"
+func_print_head  "Enabling my sql"
 systemctl enable mysqld
 
-echo -e "\e[36m>>>>>>starting the service<<<<<<<\e[0m"
+func_print_head "starting the service"
 systemctl restart mysqld
 
-echo -e "\e[36m>>>>>>resetting mysql password<<<<<<<<\e[0m"
+func_print_head "resetting mysql password"
 mysql_secure_installation --set-root-pass RoboShop@1

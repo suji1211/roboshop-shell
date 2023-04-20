@@ -3,47 +3,47 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_root_password=$1
 
-echo -e "\e[36m>>>>>>installing maven<<<<<<<<\e[0m"
+func_print_head "installing maven"
 yum install maven -y
 
-echo -e "\e[36m>>>>>>Adding application user<<<<<<<\e[0m"
+func_print_head "Adding application user"
 useradd ${app_user}
 
-echo -e "\e[36m>>>>>>creating DIRECTORY<<<<<<<<\e[0m"
+func_print_head "creating DIRECTORY"
 rm -rf /app
 mkdir /app
 
-echo -e "\e[36m>>>>>>downloading shipping file<<<<<<<<\e[0m"
+func_print_head "downloading shipping file"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
 
-echo -e "\e[36m>>>>>>CHANGING TO APP DIRECTORY<<<<<<<<\e[0m"
+func_print_head "CHANGING TO APP DIRECTORY"
 cd /app
 
-echo -e "\e[36m>>>>>>Extacting the shipping file<<<<<<<<\e[0m"
+func_print_head "Extacting the shipping file"
 unzip /tmp/shipping.zip
 
-echo -e "\e[36m>>>>>>cleaning maven package<<<<<<<<\e[0m"
+func_print_head "cleaning maven package"
 mvn clean package
 
-echo -e "\e[36m>>>>>>Cmoving file <<<<<<<<\e[0m"
+func_print_head "moving file"
 mv target/shipping-1.0.jar shipping.jar
 
-echo -e "\e[36m>>>>>>copying file<<<<<<<<\e[0m"
+func_print_head "copying file"
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
 
-echo -e "\e[36m>>>>>>installing mysql<<<<<<<<\e[0m"
+func_print_head "installing mysql"
 yum install mysql -y
 
-echo -e "\e[36m>>>>>>calling the service<<<<<<<<\e[0m"
+func_print_head "calling the service"
 mysql -h mysql-dev.sujianilsrisriyaan.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
-echo -e "\e[36m>>>>>>restarting the service<<<<<<<<\e[0m"
-echo -e "\e[36m>>>>>>reloading the service<<<<<<<<\e[0m"
+
+func_print_head "reloading the service"
 systemctl daemon-reload
 
-echo -e "\e[36m>>>>>>starting and enabling service<<<<<<<<\e[0m"
+func_print_head "restarting the service"
 systemctl enable shipping
 systemctl restart shipping
 
