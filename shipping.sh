@@ -1,6 +1,8 @@
 script=$(realpath "0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
+mysql_root_password=$1
+
 echo -e "\e[36m>>>>>>installing maven<<<<<<<<\e[0m"
 yum install maven -y
 
@@ -34,7 +36,7 @@ echo -e "\e[36m>>>>>>installing mysql<<<<<<<<\e[0m"
 yum install mysql -y
 
 echo -e "\e[36m>>>>>>calling the service<<<<<<<<\e[0m"
-mysql -h mysql-dev.sujianilsrisriyaan.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql-dev.sujianilsrisriyaan.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
 echo -e "\e[36m>>>>>>restarting the service<<<<<<<<\e[0m"
