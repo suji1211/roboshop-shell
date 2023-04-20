@@ -3,6 +3,11 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 
+if [ -z "rabbit_appuser_password" ]; then
+  echo Input Roboshop Appuser password Missing
+  exit
+fi
+
 func_print_head() {
   echo -e "\e[36m>>>>>>>>> $1 <<<<<<<<<<\e[0m"
 }
