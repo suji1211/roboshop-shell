@@ -9,7 +9,7 @@ func_print_head() {
   echo -e "\e[36m>>>>>>>>> $1 <<<<<<<<<<\e[0m" &>>log_file
 }
 
-fun_stat_check() {
+func_stat_check() {
 if [ $1 -eq 0 ]; then
     echo -e "\e[31m SUCCESS \e[0m"
   else
