@@ -68,7 +68,7 @@ func_app_prereq() {
 }
    func_systemd_setup() {
     func_print_head "setup SystemD service"
-    cp ${script_path}/${component}.service /etc/systemd/system/${component} b .service &>>log_file
+    cp ${script_path}/${component}.service /etc/systemd/system/${component} &>>log_file
     func_stat_check $?
 
     func_print_head "restart the ${component} service"
