@@ -2,10 +2,10 @@ script=$(realpath "0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
-if [ -z "$mysql_root_password" ]; then
-  echo Input MySQL Root password Missing
-  exit
-fi
+#if [ -z "$mysql_root_password" ]; then
+ # echo Input MySQL Root password Missing
+ # exit
+#fi
 
 func_print_head "disabling the mysql"
 dnf module disable mysql -y &>>$log_file
