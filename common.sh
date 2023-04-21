@@ -94,8 +94,7 @@ func_schema_setup() {
   func_stat_check $?
 
   func_schema_setup
-  func_systemd_service
-
+  func_systemd_setup
 
 
 }
