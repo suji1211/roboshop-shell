@@ -41,15 +41,15 @@ func_schema_setup() {
     func_print_head "Load Schema"
     mysql -h mysql-dev.sujianilsrisriyaan.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>log_file
     func_stat_check $?
-
+   fi
 }
-func_app_prereq() {
-  func_print_head "Add Application User"
+  func_app_prereq() {
+    func_print_head "Add Application User"
     id ${app_user} &>>log_file
     if [ $? -ne 0 ]; then
       useradd ${app_user} &>>log_file
+    fi
     func_stat_check $?
-
     func_print_head "Creating Application Directory"
     rm -rf /app &>>log_file
     mkdir /app &>>log_file
@@ -83,7 +83,7 @@ func_app_prereq() {
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>log_file
   func_stat_check $?
 
-  func_print_head "installing NodeJS"
+  func_print_head "install NodeJS"
   yum install nodejs -y &>>log_file
   func_stat_check $?
 
@@ -102,10 +102,10 @@ func_app_prereq() {
 func_java() {
   func_print_head "install maven"
   yum install maven -y &>>log_file
-
   func_stat_check $?
 
   func_app_prereq
+
   func_print_head "clean maven package"
   mvn clean package &>>log_file
   func_stat_check $?
@@ -132,7 +132,6 @@ func_python() {
 
   func_print_head "Update Passwords in System service file"
   sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>log_file
-  cp ${script_path}/payment.service /etc/systemd/system/payment.service &>>log_file
   func_stat_check $?
 
   func_systemd_setup

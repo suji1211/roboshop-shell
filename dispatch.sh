@@ -13,4 +13,4 @@ go mod init dispatch
 go get
 go build
 
- func_systemd_setup
+func_systemd_setup
