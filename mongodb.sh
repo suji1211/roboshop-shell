@@ -16,7 +16,7 @@ func_stat_check $?
 
 func_print_head "restart mongo file"
 systemctl enable mongod &>>$log_file
-systemctl start mongod &>>$log_file
+systemctl restart mongod &>>$log_file
 func_stat_check $?
 
 #edit the file replace 127.0.0.1 with 0.0.0.0
