@@ -4,8 +4,8 @@ source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 
 
-if [ -z "$mysql_root_password" ]; then
-  echo Input MySQL Root password Missing
+if [ -z "$rabbitmq_appuser_password" ]; then
+  echo Input Rabbitmq  password Missing
    exit
 fi
 
