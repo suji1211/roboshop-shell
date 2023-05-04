@@ -6,7 +6,7 @@ rabbitmq_appuser_password=$1
 
 if [ -z "$rabbitmq_appuser_password" ]; then
   echo Input Rabbitmq  password Missing
-   exit
+   exit 1
 fi
 
 func_print_head "download erlang supporting file"
