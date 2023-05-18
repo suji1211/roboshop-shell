@@ -9,16 +9,16 @@ if [ -z "$rabbitmq_appuser_password" ]; then
    exit 1
 fi
 
-func_print_head "download erlang supporting file"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
-func_stat_check $?
+#func_print_head "download erlang supporting file"
+#curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
+#func_stat_check $?
 
 func_print_head "download rabbitmq supporting file"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
 func_stat_check $?
 
 func_print_head "install Erlang and rabbitmq supporting file"
-yum install erlang rabbitmq-server -y &>>$log_file
+yum install rabbitmq-server -y &>>$log_file
 func_stat_check $?
 
 func_print_head "Enable and restart server"
