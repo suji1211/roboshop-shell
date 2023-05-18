@@ -17,12 +17,12 @@ func_print_head "download rabbitmq supporting file"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
 func_stat_check $?
 
-func_print_head "install Erlang and rabbitmq supporting file"
+func_print_head "install Erlang supporting file"
 yum install erlang -y &>>$log_file
 func_stat_check $?
 
 
-func_print_head "install Erlang and rabbitmq supporting file"
+func_print_head "install Rabbitmq supporting file"
 yum install rabbitmq-server -y &>>$log_file
 func_stat_check $?
 
